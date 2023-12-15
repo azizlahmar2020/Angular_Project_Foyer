@@ -1,0 +1,36 @@
+<div class="page-background">
+  <form [formGroup]="addCh" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
+      <label for="numeroChambre" class="form-label">Numéro de Chambre:</label>
+      <input type="number" id="numeroChambre" formControlName="numeroChambre" class="form-control"/>
+      <div *ngIf="addCh.get('numeroChambre')?.hasError('required') && (addCh.get('numeroChambre')?.touched || addCh.get('numeroChambre')?.dirty)">
+        Numéro de Chambre est requis.
+      </div>
+      <div *ngIf="addCh.get('numeroChambre')?.hasError('min') && (addCh.get('numeroChambre')?.touched || addCh.get('numeroChambre')?.dirty)">
+        Le numéro de chambre doit être supérieur ou égal à 1.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="typeChambre" class="form-label">Type de Chambre:</label>
+      <select id="typeChambre" formControlName="typeC" class="form-control">
+        <option *ngFor="let type of typeChambre | keyvalue" [value]="type.key">{{ type.value }}</option>
+      </select>
+      <div *ngIf="addCh.get('typeC')?.hasError('required') && (addCh.get('typeC')?.touched || addCh.get('typeC')?.dirty)">
+        Type de Chambre est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="blocChambre" class="form-label">Bloc:</label>
+      <select id="blocChambre" formControlName="blocChambre" class="form-control">
+        <option *ngFor="let bloc of blocs" [value]="bloc.idBloc">{{ bloc.nomBloc }}</option>
+      </select>
+      <div *ngIf="addCh.get('blocChambre')?.hasError('required') && (addCh.get('blocChambre')?.touched || addCh.get('blocChambre')?.dirty)">
+        Bloc est requis.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="addCh.invalid">Ajouter Chambre</button>
+  </form>
+</div>
