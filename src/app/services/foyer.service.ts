@@ -12,7 +12,7 @@ export class foyerService {
     throw new Error('Method not implemented.');
   }
 
-  private url = 'http://localhost:8089/foyer/foyer/';
+  private url = 'http://localhost:8091/foyer/foyer/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/Json' }),
   };

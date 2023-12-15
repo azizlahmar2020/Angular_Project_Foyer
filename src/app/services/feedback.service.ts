@@ -7,7 +7,7 @@ import { feedback } from '../model/feedback'; // Make sure to import the Feedbac
   providedIn: 'root'
 })
 export class FeedbackService {
-  private url = 'http://localhost:8089/foyer';
+  private url = 'http://localhost:8091/foyer';
 
   constructor(private http: HttpClient) { }
 

@@ -11,7 +11,7 @@ export class universiteService {
   getuniversiteById(idUniversite: number) {
     throw new Error('Method not implemented.');
   }
-  private url: String = 'http://localhost:8089/foyer/universite/';
+  private url: String = 'http://localhost:8091/foyer/universite/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/Json' }),
   };
@@ -30,10 +30,10 @@ export class universiteService {
   removeUniversite(universite: universite) {
     return this.http.delete(this.url+"remove-universite/"+universite.idUniversite);
   }
- 
+
   updateUniversite(univerite: universite, id: number): Observable<universite> {
     const updateUrl = `${this.url}update-universite/${id}`;
     return this.http.put<universite>(updateUrl, univerite, this.httpOptions);
   }
- 
+
 }

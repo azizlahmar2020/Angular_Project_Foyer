@@ -50,6 +50,9 @@ import { ShowfoyerComponent } from './gestion-foyer/show-foyer/show-foyer.compon
 import { AddfoyerComponent } from './gestion-foyer/add-foyer/add-foyer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BackfrontComponent } from './backfront/backfront.component';
+import { BackendComponent } from './backend/backend.component';
+import { TransparentNavbarComponent } from './transparent-navbar/transparent-navbar.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -68,6 +71,8 @@ DeleteuniversiteComponent,
 DetailuniversiteComponent,
 AddfeedbackComponent,
 ShowfeedbackComponent,
+HomePageComponent,
+
 
     AddChambreComponent,
     ShowChambreComponent,
@@ -90,6 +95,8 @@ ShowfeedbackComponent,
         ResetPasswordComponent,
         CheckEmailComponent,
         BackfrontComponent,
+        BackendComponent,
+        TransparentNavbarComponent,
 
 
 

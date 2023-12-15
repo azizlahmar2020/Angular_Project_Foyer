@@ -8,7 +8,7 @@ import { FeedbackService } from 'src/app/services/feedback.service';
   styleUrls: ['./add-feedback.component.scss']
 })
 export class AddfeedbackComponent {
- 
+
   addFed: FormGroup;
 
 
@@ -16,13 +16,13 @@ export class AddfeedbackComponent {
     this.addFed = this.fb.group({
       id: [''],
       commentaire: ['', Validators.required],
-      idFoyer:['', Validators.required], // Utilisez archived au lieu de estValid
-      idUniversite: ['', Validators.required]
+      idFoyer:[1, Validators.required], // Utilisez archived au lieu de estValid
+      idUniversite: [1, Validators.required]
     });
 
   }
 
-  
+
 onSubmit() {
   if (this.addFed.valid) {
     const feedback = this.addFed.value;
@@ -34,8 +34,8 @@ onSubmit() {
         alert(JSON.stringify(data, null, 2));
         console.log(data);
       });
-      
-    
+
+
     });
   }
 }

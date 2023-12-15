@@ -19,6 +19,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { CheckEmailComponent } from './check-email/check-email.component';
 import { GestionUserModule } from './gestion-utilisateur/gestion-utilisateur.module';
 import { BackfrontComponent } from './backfront/backfront.component';
+import { BackendComponent } from './backend/backend.component';
 
 const routes: Routes = [
   {path: 'gestion-foyer', loadChildren: () => import('./gestion-foyer/gestion-foyer.module').then(m => m.GestionfoyerModule)},
@@ -43,7 +44,7 @@ const routes: Routes = [
   { path: 'check-email', component: CheckEmailComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
 
-
+{path: 'backend', component: BackendComponent},
 
 
 
