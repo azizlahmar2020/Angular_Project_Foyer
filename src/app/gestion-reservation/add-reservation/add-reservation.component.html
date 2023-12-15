@@ -1,0 +1,55 @@
+<style>
+.form-container {
+  background: #F9F5F1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #333;
+  text-align: center;
+}
+
+  .btn-primary {
+    background-color: #8D91AA;
+    border-color: #333;
+    color: #fff; /* Set text color to white */
+  }
+
+  .btn-loading {
+    background-color: #8D91AA !important;
+    border-color: #8D91AA !important;
+    color: #fff !important;
+    cursor: not-allowed;
+  }
+</style>
+<form [formGroup]="addRes" (ngSubmit)="onSubmit()" class="form-container">
+
+  <div class="mb-3">
+    <label for="id" class="form-label">ID de la réservation:</label>
+    <input type="text" id="id" formControlName="idReservation" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="dateInput" class="form-label">Année Universitaire:</label>
+    <input type="date" id="dateInput" formControlName="anneeUniversite" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Vous validez cette Réservation ?</label>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <input type="radio" id="trueValue" formControlName="estValide" [value]="false" class="form-check-input" [checked]="addRes.controls['estValide'].value === false" (change)="addRes.controls['estValide'].setValue(false)">
+    <label class="form-check-label" for="trueValue">Non</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input type="radio" id="falseValue" formControlName="estValide" [value]="true" class="form-check-input" [checked]="addRes.controls['estValide'].value === true" (change)="addRes.controls['estValide'].setValue(true)">
+    <label class="form-check-label" for="falseValue">Oui</label>
+  </div>
+  <br><br>
+
+  <div class="mb-3">
+    <label for="comment" class="form-label">Commentaire :</label><br><br>
+    <textarea id="comment" formControlName="commentaire" rows="4" class="form-control"></textarea>
+  </div>
+<br>
+  <button type="submit" class="btn btn-primary">Ajouter la réservation</button>
+</form>

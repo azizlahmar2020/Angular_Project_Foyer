@@ -1,0 +1,15 @@
+<form (ngSubmit)="update()">
+  <div class="form-group">
+    <label for="id">ID</label>
+    <div class="form-group">
+      <input type="text" id="id" name="id" [(ngModel)]="ch.id" [disabled]="true" class="form-control">
+    </div>
+      </div>
+  <div class="form-group">
+    <label for="description">Numero chambre:</label>
+    <input type="text" id="description" name="description" [(ngModel)]="ch.numeroChambre" class="form-control">
+
+<button type="submit" > save</button>
+
+  </div>
+</form>
