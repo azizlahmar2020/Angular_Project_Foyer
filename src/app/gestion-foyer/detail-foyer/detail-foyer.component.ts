@@ -1,5 +1,4 @@
 import { universiteService } from './../../services/universite.service';
-import { foyer } from './../../model/foyer';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { foyerService } from 'src/app/services/foyer.service';
@@ -13,7 +12,8 @@ import { universite } from 'src/app/model/universite';
 })
 export class DetailfoyerComponent implements OnInit {
   foyer: any;
-  idfoyer:any;
+  idFoyer:any;
+  nomFoyer!:any;
   universites: universite[] = [];
   selecteduniversites!: number;
   constructor(
@@ -36,8 +36,8 @@ export class DetailfoyerComponent implements OnInit {
 
 affecterFoyerAUniversite() {
   console.log('universite'+this.selecteduniversites);
-  if (this.foyer && this.foyer.idfoyer && this.selecteduniversites) {
-    this.sfoyer. affecterFoyerAUniversite(this.foyer.idfoyer,this.selecteduniversites)
+  if (this.foyer && this.foyer.idFoyer && this.selecteduniversites) {
+    this.sfoyer. affecterFoyerAUniversite(this.foyer.idFoyer,this.selecteduniversites)
      
   } else {
     console.error("Veuillez sélectionner un foyer et assurez-vous que le universite est correctement défini.");
@@ -46,8 +46,8 @@ affecterFoyerAUniversite() {
 
 desaffecterFoyerAUniversite() {
   console.log('universite' + this.selecteduniversites);
-  if (this.foyer && this.foyer.idfoyer) {
-    this.sfoyer. desaffecterFoyerAUniversite(this.foyer.idfoyer)
+  if (this.foyer && this.foyer.idFoyer) {
+    this.sfoyer. desaffecterFoyerAUniversite(this.idFoyer)
   } else {
     console.error("Veuillez sélectionner une réservation.");
   }

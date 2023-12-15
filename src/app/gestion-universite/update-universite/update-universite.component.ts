@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { universite } from 'src/app/model/universite';
 import { universiteService } from 'src/app/services/universite.service';
 
 @Component({
@@ -10,55 +11,48 @@ import { universiteService } from 'src/app/services/universite.service';
   templateUrl: './update-universite.component.html',
   styleUrls: ['./update-universite.component.scss'] 
 })
-export class UpdateUniversiteComponent implements OnInit {
-  updateForm!: FormGroup;
-  universiteId: any;
+export class UpdateuniversiteComponent implements OnInit {
+  Formupdate!: FormGroup;
+  idUniversite!: any;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private universiteService: universiteService, // Remplacez 'UniversiteService' par le nom correct de votre service
-    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private sUniversite: universiteService,
+    private ac: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.idUniversite = this.ac.snapshot.params['idUniversite'];
+
+    this.Formupdate = this.fb.group({
+      idUniversite: [this.idUniversite],
+      nomUniversite: [''],
+      adresse: ['']
+    });
+  }
 
   ngOnInit(): void {
-    this.updateForm = this.formBuilder.group({
-      idUniversite: [this.universiteId],
-
-      nomUniversite: ['', Validators.required],
-      adresse: ['', Validators.required]
+    this.sUniversite.universiteById(this.idUniversite).subscribe(data => {
+      this.Formupdate.patchValue(data || new universite());
     });
+  }
 
-    // Récupérer l'ID de l'université depuis l'URL
-    this.universiteId = this.route.snapshot.params['iduniversite'];
-
-    // Charger les données de l'université à mettre à jour
-    this.universiteService.universiteById(this.universiteId).subscribe(
-      (universite) => {
-        this.updateForm.patchValue(universite);
+  updateUniversite() {
+    
+    const updateData = this.Formupdate.value;console.log(updateData)
+    const updateSubscription = this.sUniversite.updateUniversite(updateData, this.idUniversite).subscribe({
+      next: (data: any) => {
+        console.log('Universite updated successfully:', data);
+        alert('Universite updated successfully');
+        this.router.navigate(['gestion-universite/allun']);
       },
-      (error) => {
-        console.error('Erreur lors du chargement des données de l\'université:', error);
+      error: (error: any) => {
+        console.error('Error updating Universite:', error);
+        alert(`Error updating Universite: ${error.message}`);
+      },
+      complete: () => {
+        updateSubscription.unsubscribe();
       }
-    );
+    });
   }
-
-  onSubmit(): void {
-  if (this.updateForm.valid) {
-    // Mettre à jour l'université avec les nouvelles données
-    this.universiteService.updateUniversite(this.updateForm.value).subscribe(
-      {
-        next: (updatedUniversite) => {
-          console.log('Université mise à jour avec succès:', updatedUniversite);
-          // Rediriger vers la liste des universités ou une autre page après la mise à jour
-          this.router.navigate(['/liste-universites']);
-        },
-        error: (error) => {
-          console.error('Erreur lors de la mise à jour de l\'université:', error);
-        }
-      }
-    );
-  }
-}
 
 }

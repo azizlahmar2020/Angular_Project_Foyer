@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdduniversiteComponent } from './add-universite/add-universite.component';
 import { ShowuniversiteComponent } from './show-universite/show-universite.component';
 import { DetailuniversiteComponent } from './detail-universite/detail-universite.component';
-import { UpdateUniversiteComponent } from './update-universite/update-universite.component';
+import { UpdateuniversiteComponent } from './update-universite/update-universite.component';
 import { DashuniversiteComponent } from './dashuniversite/dashuniversite.component';
 
 const routes: Routes = [
@@ -15,8 +15,8 @@ const routes: Routes = [
     path: 'allun',
     component: ShowuniversiteComponent,
   },
-  { path: 'detailUn/:iduniversite', component: DetailuniversiteComponent },
-  { path: 'updateUn/:iduniversite', component: UpdateUniversiteComponent },]},
+  { path: 'detailUn/:idUniversite', component: DetailuniversiteComponent },
+  { path: 'updateUn/:idUniversite', component: UpdateuniversiteComponent },]},
 
 ];
 

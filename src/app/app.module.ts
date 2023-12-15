@@ -12,9 +12,11 @@ import { UpdateFoyerComponent } from './gestion-foyer/update-foyer/update-foyer.
 import { DeletefoyerComponent } from './gestion-foyer/delete-foyer/delete-foyer.component';
 import { AdduniversiteComponent } from './gestion-universite/add-universite/add-universite.component';
 import { ShowuniversiteComponent } from './gestion-universite/show-universite/show-universite.component';
-import { UpdateUniversiteComponent } from './gestion-universite/update-universite/update-universite.component';
+import { UpdateuniversiteComponent } from './gestion-universite/update-universite/update-universite.component';
 import { DeleteuniversiteComponent } from './gestion-universite/delete-universite/delete-universite.component';
 import { DetailuniversiteComponent } from './gestion-universite/detail-universite/detail-universite.component';
+import { AddfeedbackComponent } from './gestion-feedback/add-feedback/add-feedback.component';
+import { ShowfeedbackComponent } from './gestion-feedback/show-feedback/show-feedback.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,11 @@ import { DetailuniversiteComponent } from './gestion-universite/detail-universit
     DeletefoyerComponent,
     AdduniversiteComponent,
     ShowuniversiteComponent,
-    UpdateUniversiteComponent,
+    UpdateuniversiteComponent,
     DeleteuniversiteComponent,
     DetailuniversiteComponent,
+    AddfeedbackComponent,
+    ShowfeedbackComponent,
    
   ],
   imports: [

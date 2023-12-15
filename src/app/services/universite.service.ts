@@ -7,12 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class universiteService {
- 
+  getUniversiteById: any;
+  getuniversiteById(idUniversite: number) {
+    throw new Error('Method not implemented.');
+  }
   private url: String = 'http://localhost:8089/foyer/universite/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/Json' }),
   };
- ;
   constructor(private http:HttpClient) { }
   getuniversite():Observable<any> {
     return this.http.get(`${this.url}restieve-all-universites`);
@@ -29,9 +31,9 @@ export class universiteService {
     return this.http.delete(this.url+"remove-universite/"+universite.idUniversite);
   }
  
-  updateUniversite(objet:universite): Observable<universite> {
-    const updateUrl = `${this.url}update-universite/${objet.idUniversite}`;
-    return this.http.put<universite>(updateUrl, universite);
+  updateUniversite(univerite: universite, id: number): Observable<universite> {
+    const updateUrl = `${this.url}update-universite/${id}`;
+    return this.http.put<universite>(updateUrl, univerite, this.httpOptions);
   }
  
 }
