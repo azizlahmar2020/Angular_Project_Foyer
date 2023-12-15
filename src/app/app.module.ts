@@ -49,6 +49,7 @@ import { DetailUserComponent } from './gestion-utilisateur/detail-user/detail-us
 import { ShowfoyerComponent } from './gestion-foyer/show-foyer/show-foyer.component';
 import { AddfoyerComponent } from './gestion-foyer/add-foyer/add-foyer.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BackfrontComponent } from './backfront/backfront.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ ShowfeedbackComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
         CheckEmailComponent,
+        BackfrontComponent,
 
 
 

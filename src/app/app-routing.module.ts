@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CheckEmailComponent } from './check-email/check-email.component';
 import { GestionUserModule } from './gestion-utilisateur/gestion-utilisateur.module';
+import { BackfrontComponent } from './backfront/backfront.component';
 
 const routes: Routes = [
   {path: 'gestion-foyer', loadChildren: () => import('./gestion-foyer/gestion-foyer.module').then(m => m.GestionfoyerModule)},
@@ -31,7 +32,7 @@ const routes: Routes = [
 
   { path: 'gestion-bloc', loadChildren: () => import('./gestion-bloc/gestion-bloc.module').then(m => m.GestionBlocModule) },
 
-
+{path:'backfront',component:BackfrontComponent},
   {path: 'gestion-utilisateur', loadChildren: () => import('./gestion-utilisateur/gestion-utilisateur.module').then(m => m.GestionUserModule)},
   {path:'registry',component:RegisterComponent},
   {path:'login',component:AuthenticationComponent},
