@@ -12,16 +12,20 @@ const routes: Routes = [
     path: '',
     component: DashreservationComponent,
     children: [
+      { path: 'update/:id', component: UpdateReservationComponent },
       { path: 'addRes', component: AddReservationComponent },
       { path: 'allres', component: ShowReservationComponent },
       {
         path: 'detailRes/:idReservation',
         component: DetailReservationComponent,
       },
+     
+      /*
       {
         path: 'updateRes/:idReservation',
         component: UpdateReservationComponent,
       },
+      */
     ],
   },
 ];

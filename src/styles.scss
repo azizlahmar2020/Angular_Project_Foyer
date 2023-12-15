@@ -1,2 +1,23 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
 
+
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+/* src/styles.scss */
+
+@font-face {
+  font-family: 'AntonRegular';
+  src: url('./assets/fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  
+html, body {
+    scroll-behavior: smooth;
+    background-color: #8D19AA;
+  }
+  

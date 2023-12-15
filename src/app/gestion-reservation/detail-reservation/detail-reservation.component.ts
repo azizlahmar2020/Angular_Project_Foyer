@@ -37,48 +37,68 @@ export class DetailReservationComponent implements OnInit {
   addReservation() {
     this.router.navigate(['/gestion-reservation/addRes']); // Naviguer vers la page d'ajout
   }
-loadChambre() {
-    this.chambreService.getAllChambre().subscribe((data: any) => {
-      this.chambres = data;
-    });
-}
-
-affecterReservationAChambre() {
-  console.log('chambre'+this.selectedchambres);
-  if (this.reservation && this.reservation.idReservation && this.selectedchambres) {
-    this.sReservation.affecterReservationChambre(this.reservation.idReservation,this.selectedchambres)
-      .subscribe(
-        response => {
-          console.log(response);
-
-        },
-        error => {
-          console.error("Erreur lors de l'affectation du reservation au chambre :", error);
-
-        }
-      );
-  } else {
-    console.error("Veuillez sélectionner un reservation et assurez-vous que le chambre est correctement défini.");
+  loadChambre() {
+    this.chambreService.getAllChambre().subscribe(
+      (data: any) => {
+        this.chambres = data;
+        console.log('Chambres:', this.chambres); // Log retrieved data
+      },
+      (error) => {
+        console.error('Error fetching Chambres:', error);
+      }
+    );
   }
-}
-
-desaffecterReservationDeChambre() {
-  console.log('chambre' + this.selectedchambres);
-  if (this.reservation && this.reservation.idReservation) {
-    this.sReservation.desaffacterReservationChambre(this.reservation.idReservation)
-      .subscribe(
-        response => {
-          console.log(response);
-          // Vous pouvez ajouter d'autres traitements ici si nécessaire
-        },
-        error => {
-          console.error("Erreur lors de la désaffectation de la réservation de la chambre :", error);
-        }
-      );
-  } else {
-    console.error("Veuillez sélectionner une réservation.");
+    
+  affecterReservationAChambre() {
+    if (this.reservation && this.reservation.idReservation) {
+      if (this.selectedchambres) {
+        this.sReservation
+          .affecterReservationChambre(
+            this.reservation.idReservation,
+            this.selectedchambres
+          )
+          .subscribe(
+            (response) => {
+              console.log(response);
+            },
+            (error) => {
+              this.router.navigate(['/dashboard/gestion-reservation/allres']);
+              console.error(
+                "Erreur lors de l'affectation du reservation au chambre :",
+                error
+              );
+            }
+          );
+      } else {
+        console.error('Veuillez sélectionner une chambre.');
+      }
+    } else {
+      console.error('Veuillez sélectionner une réservation.');
+    }
   }
-}
+  
+  desaffecterReservationDeChambre() {
+    console.log('chambre' + this.selectedchambres);
+    if (this.reservation && this.reservation.idReservation) {
+      this.sReservation
+        .desaffacterReservationChambre(this.reservation.idReservation)
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.router.navigate(['/dashboard/gestion-reservation/allres']);
+          },
+          (error) => {
+            this.router.navigate(['/dashboard/gestion-reservation/allres']);
+            console.error(
+              'Erreur lors de la désaffectation de la réservation de la chambre :',
+              error
+            );
+          }
+        );
+    } else {
+      console.error('Veuillez sélectionner une réservation.');
+    }
+  }
 
 
 

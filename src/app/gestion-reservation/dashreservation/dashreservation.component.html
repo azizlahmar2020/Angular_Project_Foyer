@@ -1,9 +1,46 @@
-<p>dashreservation works!</p>
-<router-outlet></router-outlet>
-<nav>
-  <ul>
-    <li><a [routerLink]="['/gestion-reservation/addRes']">Ajouter reservation</a></li>
-    <li><a [routerLink]="['/gestion-reservation/allres']">Liste des reservation</a></li>
+<body>
+  
+  <div class="sidebar">
+    <div class="dashboard-items">
+      <ul>
+        <li>
+          <i class="fas fa-user"></i>
+          Etudiants
+          <ul>
+            <li><a [routerLink]="['/etudiants/ajouter']"><i class="fas fa-plus"></i> Ajouter Etudiant</a></li>
+            <li><a [routerLink]="['/etudiants/liste']"><i class="fas fa-list"></i> Liste des Etudiants</a></li>
+          </ul>
+        </li>
+        <li>
+          <i class="fas fa-university"></i>
+          Université
+          <ul>
+            <li><a [routerLink]="['/universite/ajouter']"><i class="fas fa-plus"></i> Gestion Université</a></li>
+            <li><a [routerLink]="['/universite/liste']"><i class="fas fa-list"></i> Liste des Universités</a></li>
+          </ul>
+        </li>
+        <li>
+          <i class="fas fa-calendar"></i>
+          Reservation
+          <ul>
+            <li><a [routerLink]="['/gestion-reservation/addRes']"><i class="fas fa-plus"></i> Ajouter reservation</a></li>
+            <li><a [routerLink]="['/gestion-reservation/allres']"><i class="fas fa-list"></i> Liste des reservation</a></li>
+          </ul>
+        </li>
+        <li>
+          <i class="fas fa-home"></i>
+          Foyer
+          <ul>
+            <li><a [routerLink]="['/foyer/ajouter']"><i class="fas fa-plus"></i> Gestion Foyer</a></li>
+            <li><a [routerLink]="['/foyer/liste']"><i class="fas fa-list"></i> Liste des Foyers</a></li>
+          </ul>
+        </li>
+        <!-- Add more items as needed -->
+      </ul>
+    </div>
+  </div>
 
-  </ul>
-</nav>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</body>

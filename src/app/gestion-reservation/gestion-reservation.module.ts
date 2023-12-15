@@ -1,6 +1,6 @@
+// gestion-reservation.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashreservationComponent } from './dashreservation/dashreservation.component';

@@ -1,5 +1,6 @@
-<form (ngSubmit)="updateReservation()">
+<app-dashreservation></app-dashreservation>
 
+<form (ngSubmit)="updateReservation()">
  
   <div class="form-group">
     <label for="dateInput" class="form-label">Année Universitaire:</label>
@@ -18,7 +19,6 @@
     <label for="commentaire">Commentaire</label>
     <textarea id="commentaire" name="commentaire" [(ngModel)]="reservation.commentaire" rows="4" class="form-control"></textarea>
   </div>
-
 
   <button type="submit">Sauvegarder</button>
   

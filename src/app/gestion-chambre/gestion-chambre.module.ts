@@ -7,13 +7,11 @@ import { DashchambreComponent } from './dashchambre/dashchambre.component';
 
 @NgModule({
   declarations: [
-    DashchambreComponent,
+    DashchambreComponent
   ],
   imports: [
     CommonModule,
     GestionChambreRoutingModule
   ]
 })
-export class GestionChambreModule {
-
- }
+export class GestionChambreModule { }

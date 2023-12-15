@@ -1,80 +1,37 @@
-import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Chambre } from '../model/Chambre';
-import { Observable, map } from 'rxjs';
-import { Bloc } from '../model/Bloc';
-
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChambreService {
-  private url: string = 'http://localhost:8089/foyer/Chambre';
+  private url: String = 'http://localhost:8089/foyer';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/Json' }),
   };
-
-  constructor(private http: HttpClient) {}
-
-  getAllChambre(): Observable<Chambre[]> {
-    return this.http.get<Chambre[]>(this.url + '/allChambre');
+  constructor(private http:HttpClient) { }
+  getAllChambre(){
+    return this.http.get('http://localhost:8089/foyer/allChambre');
   }
-
-
-
-
-  addChambre(chambre: Chambre): Observable<any> {
-    return this.http.post(this.url + '/addChambre', chambre, this.httpOptions);
+  addChambre(chambre:any){
+    return this.http.post(this.url+'/addChambre',chambre);
   }
-
-  deleteChambre(ch: Chambre): Observable<Chambre> {
-    return this.http.delete<Chambre>(this.url + '/deleteChambre/' + ch.idChambre, this.httpOptions);
-  }
-
-  getChambreById(id: any): Observable<Chambre> {
-    return this.http.get<Chambre>(this.url + '/chambre/' + id);
-  }
-
-  updateChambre(id: number, chambre: Chambre): Observable<Chambre> {
-
-    return this.http.put<Chambre>(this.url + '/updateChambre/' + id, chambre, this.httpOptions);
+  deleteChambre(ch:Chambre):Observable<Chambre>{
+    return this.http.delete<Chambre>('http://localhost:8089/foyer/deleteChambre/'+ch.idChambre );
 
   }
-
-  /*affecterChambreABloc(idChambre: number, idBloc: number): Observable<string> {
+  getChambreById(id:any){
+    return this.http.get('http://localhost:8089/foyer/chambre/'+id);
+  }
+  updateChambre(id:number,chambre:Chambre): Observable<Chambre> {
+    return this.http.put<Chambre>(this.url+'/updateChambre/'+id,chambre);
+  }
+  affecterChambreABloc(idChambre: number, idBloc: number): Observable<string> {
     return this.http.put<string>(this.url + '/affecterChambreABloc/' + idChambre + '/' + idBloc, null);
-  }*/
-
-  affecterChambreABloc(idChambre: number, idBloc: number): Observable<void> {
-    return this.http.put<void>(this.url + '/affecterChambreABloc/' + idChambre + '/' + idBloc, {});
   }
-
-
-
-
-  desaffecterChambreABloc(idChambre: number): Observable<void> {
-    return this.http.put<void>(this.url + '/desaffecterChambreABloc/' + idChambre, null);
-  }
-
-  getBlocByName(name: string): Observable<any> {
-    return this.http.get(this.url + '/bloc/' + name);
-  }
-
-
-
-  generateQRCode(idChambre: number): Observable<HttpResponse<Blob>> {
-    const url = `${this.url}/qr/${idChambre}`;
-    return this.http.get(url, {
-      observe: 'response',
-      responseType: 'blob',
-    });
-  }
-  getBlocById(id: any): Observable<Bloc> {
-    return this.http.get<Bloc>(this.url + '/chambreBloc/' + id);
-  }
-  chambrebybloc(idBloc: string): Observable<Chambre[]> {
-    const url = `${this.url}/by-bloc/${idBloc}`;
-    return this.http.get<Chambre[]>(url);
-
+  desaffecterChambreABloc(idChambre: number): Observable<string> {
+    return this.http.put<string>(this.url + '/desaffecterChambreABloc/' + idChambre , null);
   }
 }
