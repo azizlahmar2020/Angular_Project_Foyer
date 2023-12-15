@@ -16,18 +16,17 @@
       <div class="text-center mt-3">
         <button class="btn btn-primary" (click)="addReservation()">Réserver</button>
       </div>
-
       <div class="mt-4">
         <label for="selectedchambres">Sélectionner une chambre :</label>
         <select id="selectedchambres" [(ngModel)]="selectedchambres" class="form-control">
           <option *ngFor="let ch of chambres" [value]="ch.idChambre">{{ ch?.numeroChambre }}</option>
         </select>
       </div>
-
+      
       <div class="text-center mt-3">
         <button class="btn btn-success" (click)="affecterReservationAChambre()">Affecter à la chambre</button>
         <button class="btn btn-danger" (click)="desaffecterReservationDeChambre()">Désaffecter de la chambre</button>
       </div>
-    </div>
+        </div>
   </div>
 </div>

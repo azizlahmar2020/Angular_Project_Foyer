@@ -1,0 +1,40 @@
+.navbar {
+  background-color: transparent !important;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: color 0.3s; /* Add transition for a smooth effect */
+  font-size: 18px; /* Adjust the font size as needed */
+  text-decoration: none; /* Remove default underline */
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-nav .nav-link {
+  margin-right: 20px; /* Adjust the margin-right value as needed */
+  font-size: 20px; /* Adjust the font size as needed */
+}
+
+/* Add underline effect for active link */
+.navbar-nav .nav-item.active .nav-link {
+  text-decoration: underline;
+}
+.navbar-logo {
+  img {
+    height: 120px; /* Adjust the height as needed */
+  }
+}
+
+/* Add hover effect */
+.navbar-nav .nav-link:hover {
+  color: #8d91aa !important; /* Change color to your desired hover color */
+}
+.navbar-nav .btn {
+  margin-top: 5px; /* Adjust the margin-top value as needed */
+}
+

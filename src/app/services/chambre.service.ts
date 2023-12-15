@@ -13,17 +13,17 @@ export class ChambreService {
   };
   constructor(private http:HttpClient) { }
   getAllChambre(){
-    return this.http.get('http://localhost:8089/allChambre');
+    return this.http.get('http://localhost:8089/foyer/allChambre');
   }
   addChambre(chambre:any){
     return this.http.post(this.url+'/addChambre',chambre);
   }
   deleteChambre(ch:Chambre):Observable<Chambre>{
-    return this.http.delete<Chambre>('http://localhost:8089/deleteChambre/'+ch.idChambre );
+    return this.http.delete<Chambre>('http://localhost:8089/foyer/deleteChambre/'+ch.idChambre );
 
   }
   getChambreById(id:any){
-    return this.http.get('http://localhost:8089/chambre/'+id);
+    return this.http.get('http://localhost:8089/foyer/chambre/'+id);
   }
   updateChambre(id:number,chambre:Chambre): Observable<Chambre> {
     return this.http.put<Chambre>(this.url+'/updateChambre/'+id,chambre);
