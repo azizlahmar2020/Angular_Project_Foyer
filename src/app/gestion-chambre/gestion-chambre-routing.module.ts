@@ -7,17 +7,13 @@ import { UpdateChambreComponent } from './update-chambre/update-chambre.componen
 import { DashchambreComponent } from './dashchambre/dashchambre.component';
 
 const routes: Routes = [
- {path:'',component:DashchambreComponent,children:[{
-    path: 'addch',
-    component: AddChambreComponent,
-  },
-  {
-    path: 'allch',
-    component: ShowChambreComponent,
-  },
-  { path: 'detailCh/:idChambre', component: DetailChambreComponent },
-  { path: 'updateCh/:idChambre', component: UpdateChambreComponent },]},
-
+  {path:'',component:ShowChambreComponent},
+  { path: 'add-chambre', component: AddChambreComponent },
+  { path: 'show-chambre', component: ShowChambreComponent },
+  { path: 'detail-chambre/:idChambre', component: DetailChambreComponent },
+  { path: 'update-chambre/:id', component: UpdateChambreComponent },
+  { path: 'dashchambre', component: DashchambreComponent },
+  // Ajoutez d'autres routes selon votre structure et vos besoins
 ];
 
 @NgModule({

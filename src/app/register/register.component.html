@@ -23,24 +23,23 @@
     <div class="card custom-card">
       <div class="card-body">
         <h1 class="card-title">Registration</h1>
-        <form >
+        <form (submit)="register()">
           <div class="mb-3">
-            <label for="firstname" class="form-label">FirstName</label>
-            <input type="text" class="form-control" id="firstname">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstname" [(ngModel)]="registerRequest.firstname" name="firstname" required>
           </div>
           <div class="mb-3">
-            <label for="lastname" class="form-label">LastName</label>
-            <input type="text" class="form-control" id="lastname" >
+            <label for="lastname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastname" [(ngModel)]="registerRequest.lastname" name="lastname" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" id="email" [(ngModel)]="registerRequest.email" name="email" required>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" >          
-        </div>
-         
+            <input type="password" class="form-control" id="password" [(ngModel)]="registerRequest.password" name="password" required>
+          </div>
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
       </div>
