@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ShowuniversiteComponent } from './gestion-universite/show-universite/show-universite.component';
+import { ShowfoyerComponent } from './gestion-foyer/show-foyer/show-foyer.component';
+import { ShowfeedbackComponent } from './gestion-feedback/show-feedback/show-feedback.component';
+
+
+
 import { GestionBlocModule } from './gestion-bloc/gestion-bloc.module';
 import { GestionChambreModule } from './gestion-chambre/gestion-chambre.module';
-import { GestionReservationModule } from './gestion-reservation/gestion-reservation.module';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthGuard } from './services/auth/guard.guard';
@@ -15,14 +20,18 @@ import { CheckEmailComponent } from './check-email/check-email.component';
 import { GestionUserModule } from './gestion-utilisateur/gestion-utilisateur.module';
 
 const routes: Routes = [
-
+  {path: 'gestion-foyer', loadChildren: () => import('./gestion-foyer/gestion-foyer.module').then(m => m.GestionfoyerModule)},
+  {path: 'gestion-feedback', loadChildren: () => import('./gestion-feedback/gestion-feedback.module').then(m => m.GestionfeedbackModule)},
+  {path: 'gestion-universite', loadChildren: () => import('./gestion-universite/gestion-universite.module').then(m => m.GestionuniversiteModule)},
+  {path: 'gestion-universite/allun',component:ShowuniversiteComponent},
+  {path: 'gestion-foyer/allfoy',component:ShowfoyerComponent},
+  {path: 'gestion-feedback/allfed',component:ShowfeedbackComponent},
   { path: 'gestion-chambre', loadChildren: () => import('./gestion-chambre/gestion-chambre.module').then(m => m.GestionChambreModule) },
 
 
   { path: 'gestion-bloc', loadChildren: () => import('./gestion-bloc/gestion-bloc.module').then(m => m.GestionBlocModule) },
 
 
-  {path: 'gestion-reservation', loadChildren: () => import('./gestion-reservation/gestion-reservation.module').then(m => m.GestionReservationModule)},
   {path: 'gestion-utilisateur', loadChildren: () => import('./gestion-utilisateur/gestion-utilisateur.module').then(m => m.GestionUserModule)},
   {path:'registry',component:RegisterComponent},
   {path:'login',component:AuthenticationComponent},
@@ -40,7 +49,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),GestionBlocModule,GestionChambreModule, GestionReservationModule, GestionUserModule],
+  imports: [RouterModule.forRoot(routes),GestionBlocModule,GestionChambreModule, GestionUserModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
