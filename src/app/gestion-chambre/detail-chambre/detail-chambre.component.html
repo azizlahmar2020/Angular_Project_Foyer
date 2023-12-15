@@ -1,39 +1,21 @@
-<div class="container">
-  <h2>Détails de la chambre</h2>
-
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">{{ chambre?.idChambre }}</h3>
-    </div>
+<div class="container mt-4">
+  <div *ngIf="chambre" class="card">
     <div class="card-body">
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>Numéro de chambre:</th>
-            <td>{{ chambre?.numeroChambre }}</td>
-          </tr>
-
-          <tr>
-            <th>Type:</th>
-            <td>{{ chambre?.typeC }}</td>
-          </tr>
-          <tr>
-            <th>Bloc:</th>
-            <td>{{ blocName}}</td>
-          </tr>
-          <tr>
-            <th>Modifier:</th>
-            <td>
-              <button
-                class="btn btn-warning btn-sm action-button"
-                (click)="editCh(idChambre)"
-              >
-                <i class="fas fa-edit"></i> Modifier
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <h5 class="card-title text-center">Informations de la Chambre</h5>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="card-text"><strong>ID de la Chambre:</strong> {{ chambre.idChambre }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="card-text"><strong>Numéro de Chambre:</strong> {{ chambre.numeroChambre }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="card-text"><strong>type chambre:</strong> {{ chambre.typeC }}</p>
+        </div>
+      </div>
+   
     </div>
   </div>
 </div>
+
+

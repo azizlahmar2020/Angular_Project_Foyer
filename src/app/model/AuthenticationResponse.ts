@@ -5,8 +5,6 @@ export interface AuthenticationResponse {
     firstname: string;
     lastname: string;
     email: string;
-    role: string; // Adjust the type based on how the server sends the role
-    jwtToken: string; // Add the jwtToken property
-
+    roles: string[];
   }
-   
+  
