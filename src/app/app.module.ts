@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import{HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +27,22 @@ import { DeleteBlocComponent } from './gestion-bloc/delete-bloc/delete-bloc.comp
 import { ModifyBlocComponent } from './gestion-bloc/modify-bloc/modify-bloc.component';
 import { DetailBlocComponent } from './gestion-bloc/detail-bloc/detail-bloc.component';
 
+import { RegisterComponent } from './register/register.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { UniversiteDashboardComponent } from './universite-dashboard/universite-dashboard.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CheckEmailComponent } from './check-email/check-email.component';
+import { AddUserComponent } from './gestion-utilisateur/add-user/add-user.component';
+import { ShowUserComponent } from './gestion-utilisateur/show-user/show-user.component';
+import { UpdateUserComponent } from './gestion-utilisateur/update-user/update-user.component';
+import { DeleteUserComponent } from './gestion-utilisateur/delete-user/delete-user.component';
+import { DetailUserComponent } from './gestion-utilisateur/detail-user/detail-user.component';
+import { DetailReservationComponent } from './gestion-reservation/detail-reservation/detail-reservation.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,12 +63,22 @@ import { DetailBlocComponent } from './gestion-bloc/detail-bloc/detail-bloc.comp
         DeleteBlocComponent,
         ModifyBlocComponent,
         DetailBlocComponent,
+        RegisterComponent,
+        AuthenticationComponent,
+        StudentDashboardComponent,
+        UniversiteDashboardComponent,
+        AdminDashboardComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent,
+        CheckEmailComponent,
+    
 
 
   ],
   imports: [
     BrowserModule,RouterModule,
     AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule,HighchartsChartModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

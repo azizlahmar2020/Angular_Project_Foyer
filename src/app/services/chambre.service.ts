@@ -4,6 +4,7 @@ import { Chambre } from '../model/Chambre';
 import { Observable, map } from 'rxjs';
 import { Bloc } from '../model/Bloc';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -74,5 +75,6 @@ export class ChambreService {
   chambrebybloc(idBloc: string): Observable<Chambre[]> {
     const url = `${this.url}/by-bloc/${idBloc}`;
     return this.http.get<Chambre[]>(url);
+
   }
 }
