@@ -1,7 +1,12 @@
+import { Bloc } from "./Bloc";
+
 import { TypeChambre } from "./typeChambre";
 
 export class Chambre{
   idChambre!:number;
   numeroChambre!:number;
-  typeChambre!:TypeChambre;
+  typeC!:TypeChambre;
+  bloc: String='';
+  qrCodeUrl?: string;
+
 }

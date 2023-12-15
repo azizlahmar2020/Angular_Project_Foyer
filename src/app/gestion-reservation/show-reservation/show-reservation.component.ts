@@ -36,6 +36,7 @@ export class ShowReservationComponent implements OnInit {
       console.log(data);
     });
   }
+
   editReservation(reservationId: number) {
     console.log('Editing reservation with ID:', reservationId);
     this.router.navigate(['/gestion-reservation/updateReservation', reservationId]);

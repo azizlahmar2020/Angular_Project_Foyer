@@ -7,31 +7,29 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ReservationsService {
-  private url: String = 'http://localhost:8089/foyer/Reservation';
+  private url: String = 'http://localhost:8089/foyer/Reservation/';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/Json' }),
   };
 
   constructor(private http: HttpClient) {}
-  getAllReservations(): Observable<any> {
-    return this.http.get(this.url + '/allReservation');
+  getAllReservations() {
+    return this.http.get(this.url+'allReservation');
   }
-
-  addReservation(reservation: Reservations): Observable<any> {
-    return this.http.post(this.url + '/addReservation', reservation);  }
-
+  addReservation(reservation: any) {
+    return this.http.post(this.url + 'addReservation', reservation);  }
   deleteReservation(reser:Reservations):Observable<Reservations>{
-    return this.http.delete<Reservations>(this.url+'/deleteRes/'+reser.idReservation );
+    return this.http.delete<Reservations>(this.url+'deleteRes/'+reser.idReservation );
   }
 
   getReservationById(id: any) {
-    return this.http.get(this.url+'/reservationbyId/' + id);
+    return this.http.get('http://localhost:8089/reservationbyId/' + id);
    }
 
-  updateReservation(reservation: Reservations): Observable<Reservations> {
-   return this.http.put<Reservations>(this.url+'/updateReservation', reservation);
+  updateReservation(id: number, reservation: Reservations): Observable<Reservations> {
+    return this.http.put<Reservations>( 'http://localhost:8082/updateRes/' + id, reservation);
   }
-  
+
   affecterReservationChambre(idReservation: String, idChambre: number): Observable<string> {
     return this.http.put<string>(this.url + '/affecterReservationAChambre/' + idReservation + '/' + idChambre, null);
   }
