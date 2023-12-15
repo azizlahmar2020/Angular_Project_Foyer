@@ -62,7 +62,7 @@ export class DetailReservationComponent implements OnInit {
               console.log(response);
             },
             (error) => {
-              this.router.navigate(['/dashboard/gestion-reservation/allres']);
+              this.router.navigate(['/gestion-reservation/allres']);
               console.error(
                 "Erreur lors de l'affectation du reservation au chambre :",
                 error
