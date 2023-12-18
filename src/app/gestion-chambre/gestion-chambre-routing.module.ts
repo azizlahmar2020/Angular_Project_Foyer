@@ -7,7 +7,6 @@ import { UpdateChambreComponent } from './update-chambre/update-chambre.componen
 import { DashchambreComponent } from './dashchambre/dashchambre.component';
 
 const routes: Routes = [
-  {path:'',component:ShowChambreComponent},
   { path: 'add-chambre', component: AddChambreComponent },
   { path: 'show-chambre', component: ShowChambreComponent },
   { path: 'detail-chambre/:idChambre', component: DetailChambreComponent },

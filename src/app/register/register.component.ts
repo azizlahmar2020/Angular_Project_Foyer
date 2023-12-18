@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+
+
   registerRequest: RegisterRequest = {
     firstname: '',
     lastname: '',
@@ -33,6 +35,6 @@ export class RegisterComponent {
         // Gestion des erreurs
         console.error('Erreur lors de linscription :', error);
       });
-      
+
   }
 }

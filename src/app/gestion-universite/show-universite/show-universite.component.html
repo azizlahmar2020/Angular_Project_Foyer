@@ -15,7 +15,7 @@
       <th>ID de universite</th>
       <th>nom de universite</th>
       <th>adresse</th>
-     
+
 
       <th>Actions</th>
     </tr>
@@ -27,11 +27,8 @@
       <td>
         {{un.adresse}}
       </td>
-      
+
       <td>
-        <button class="btn btn-primary btn-sm action-button" (click)="showDetails(un.idUniversite)">
-          <i class="fas fa-info-circle"></i> Détails
-        </button>
         <button class="btn btn-warning btn-sm action-button" (click)="updateUniversite(un.idUniversite)">
           <i class="fas fa-edit"></i> Modifier
         </button>

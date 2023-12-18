@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent {
+
   loginRequest: AuthenticationRequest = {
     email: '',
     password: ''

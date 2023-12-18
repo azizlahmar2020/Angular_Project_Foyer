@@ -20,8 +20,11 @@ import { CheckEmailComponent } from './check-email/check-email.component';
 import { GestionUserModule } from './gestion-utilisateur/gestion-utilisateur.module';
 import { BackfrontComponent } from './backfront/backfront.component';
 import { BackendComponent } from './backend/backend.component';
+import { AddReservationComponent } from './gestion-reservation/add-reservation/add-reservation.component';
+import { ShowReservationComponent } from './gestion-reservation/show-reservation/show-reservation.component';
 
 const routes: Routes = [
+  {path:'',component:AuthenticationComponent},
   {path: 'gestion-foyer', loadChildren: () => import('./gestion-foyer/gestion-foyer.module').then(m => m.GestionfoyerModule)},
   {path: 'gestion-feedback', loadChildren: () => import('./gestion-feedback/gestion-feedback.module').then(m => m.GestionfeedbackModule)},
   {path: 'gestion-universite', loadChildren: () => import('./gestion-universite/gestion-universite.module').then(m => m.GestionuniversiteModule)},
@@ -46,7 +49,7 @@ const routes: Routes = [
 
 {path: 'backend', component: BackendComponent},
 
-
+{ path: 'gestion-reservation', loadChildren: () => import('./gestion-reservation/gestion-reservation.module').then(m => m.GestionReservationModule) },
 
 ];
 

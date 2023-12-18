@@ -38,7 +38,7 @@ export class ReservationsService {
   updateReservation(id: number, reservation: Reservations): Observable<Reservations> {
     return this.http.put<Reservations>(`${this.url}/updateReservation/${id}`, reservation, this.httpOptions);
   }
-  
+
   affecterReservationChambre(idReservation: string, idChambre: number): Observable<string> {
     return this.http.put<string>(this.url + '/affecterReservationAChambre/' + idReservation + '/' + idChambre, null, this.httpOptions);
   }

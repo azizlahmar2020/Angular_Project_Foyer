@@ -13,6 +13,8 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./backfront.component.scss']
 })
 export class BackfrontComponent implements OnInit {
+  showNavbar: boolean = false;
+
   chambres: Chambre[] = [];
   blocs: Bloc[] = [];
   selectedChambre: Chambre | null = null;

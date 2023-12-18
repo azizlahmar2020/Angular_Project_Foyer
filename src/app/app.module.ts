@@ -53,6 +53,13 @@ import { BackfrontComponent } from './backfront/backfront.component';
 import { BackendComponent } from './backend/backend.component';
 import { TransparentNavbarComponent } from './transparent-navbar/transparent-navbar.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AddReservationComponent } from './gestion-reservation/add-reservation/add-reservation.component';
+import { ShowReservationComponent } from './gestion-reservation/show-reservation/show-reservation.component';
+import { UpdateReservationComponent } from './gestion-reservation/update-reservation/update-reservation.component';
+import { DetailReservationComponent } from './gestion-reservation/detail-reservation/detail-reservation.component';
+import { GestionReservationModule } from './gestion-reservation/gestion-reservation.module';
+import { GestionBlocModule } from './gestion-bloc/gestion-bloc.module';
+import { GestionChambreModule } from './gestion-chambre/gestion-chambre.module';
 
 
 @NgModule({
@@ -100,10 +107,11 @@ HomePageComponent,
 
 
 
+
   ],
   imports: [
     BrowserModule,RouterModule,
-    AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule,HighchartsChartModule
+    AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule,HighchartsChartModule,GestionReservationModule,GestionBlocModule,GestionChambreModule
 
   ],
   providers: [],

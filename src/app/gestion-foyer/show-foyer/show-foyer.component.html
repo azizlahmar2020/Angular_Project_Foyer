@@ -103,7 +103,7 @@
         <th>nomFoyer</th>
         <th>archived</th>
         <th> capaciteFoyer</th>
-        
+
       </tr>
     </thead>
     <tbody>
@@ -114,11 +114,9 @@
           <span class="badge badge-info" style="color: black;">{{ foyer.archived ? 'Oui' : 'Non' }}</span>
         </td>
         <td>{{foyer.capaciteFoyer }}</td>
-      
+
         <td>
-          <button class="btn btn-primary btn-sm action-button" (click)="showDetails(foyer.idFoyer)">
-            <i class="fas fa-info-circle"></i> Détails
-          </button>
+
           <button class="btn btn-warning btn-sm action-button" (click)="updateFoyer(foyer.idFoyer)">
             <i class="fas fa-edit"></i> Modifier
           </button>

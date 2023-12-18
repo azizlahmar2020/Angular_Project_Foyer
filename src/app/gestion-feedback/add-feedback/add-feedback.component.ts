@@ -16,8 +16,8 @@ export class AddfeedbackComponent {
     this.addFed = this.fb.group({
       id: [''],
       commentaire: ['', Validators.required],
-      idFoyer:[1, Validators.required], // Utilisez archived au lieu de estValid
-      idUniversite: [1, Validators.required]
+      idFoyer:['', Validators.required], // Utilisez archived au lieu de estValid
+      idUniversite: ['', Validators.required]
     });
 
   }
