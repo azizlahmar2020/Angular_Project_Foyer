@@ -2,7 +2,8 @@
   "name": "mini-projet",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve --proxy-config proxy.conf.json"
+    "start": "ng serve --proxy-config proxy.conf.json",
+    "build": "ng build"
   },
   "private": true,
   "dependencies": {
