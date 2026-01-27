@@ -23,14 +23,12 @@ pipeline {
             }
         }
 
-        stage('Build Angular APP') {
-            steps {
-                sh '''
-                    npm install --legacy-peer-deps
-                    npm run build -- --configuration=production
-                '''
-            }
-        }
+        stage('Install Dependencies') {
+    steps {
+        sh 'npm install'
+    }
+}
+
 
         stage('Build Docker Image') {
             steps {
