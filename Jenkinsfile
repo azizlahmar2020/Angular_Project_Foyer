@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'link',
+                git branch: 'main',
                     url: 'https://github.com/azizlahmar2020/Angular_Project_Foyer.git'
             }
         }
