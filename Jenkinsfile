@@ -2,178 +2,108 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'angular-foyer-app'
-        DOCKER_TAG = "${BUILD_NUMBER}"
-        DOCKER_REGISTRY = 'your-registry' // Change this to your Docker registry
-    }
-
-    tools {
-        nodejs 'NodeJS' // Ensure NodeJS is configured in Jenkins Global Tool Configuration
+        APP_NAME = "angular-foyer"
+        IMAGE_NAME = "angular-foyer:latest"
+        KUBE_NAMESPACE = "default"
     }
 
     stages {
+
         stage('Checkout') {
             steps {
-                echo 'Checking out code from repository...'
-                checkout scm
+                git branch: 'link',
+                    url: 'https://github.com/azizlahmar2020/Angular_Project_Foyer.git'
+            }
+        }
+
+        stage('Check Node & Docker') {
+            steps {
+                sh '''
+                    node -v
+                    npm -v
+                    docker --version
+                    kubectl version --client
+                '''
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing npm dependencies...'
-                script {
-                    if (isUnix()) {
-                        sh 'npm ci --legacy-peer-deps'
-                    } else {
-                        bat 'npm ci --legacy-peer-deps'
-                    }
-                }
+                sh 'npm install'
             }
         }
 
-        stage('Lint') {
+        stage('Build Angular') {
             steps {
-                echo 'Running linting checks...'
-                script {
-                    if (isUnix()) {
-                        sh 'npm run lint || true'
-                    } else {
-                        bat 'npm run lint || exit 0'
-                    }
-                }
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'Building Angular application...'
-                script {
-                    if (isUnix()) {
-                        sh 'npm run build -- --configuration production'
-                    } else {
-                        bat 'npm run build -- --configuration production'
-                    }
-                }
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running unit tests...'
-                script {
-                    if (isUnix()) {
-                        sh 'npm run test -- --watch=false --browsers=ChromeHeadless || true'
-                    } else {
-                        bat 'npm run test -- --watch=false --browsers=ChromeHeadless || exit 0'
-                    }
-                }
+                sh 'npm run build -- --configuration=production'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                echo 'Building Docker image...'
-                script {
-                    dockerImage = docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
-                    docker.build("${DOCKER_IMAGE}:latest")
-                }
+                sh '''
+                    docker build -t $IMAGE_NAME .
+                '''
             }
         }
 
-        stage('Push Docker Image') {
-            when {
-                branch 'main' // Only push on main branch
-            }
+        stage('Load Image into KIND') {
             steps {
-                echo 'Pushing Docker image to registry...'
-                script {
-                    docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-credentials') {
-                        dockerImage.push("${DOCKER_TAG}")
-                        dockerImage.push("latest")
-                    }
-                }
+                sh '''
+                    kind load docker-image $IMAGE_NAME
+                '''
             }
         }
 
-        stage('Deploy to Development') {
-            when {
-                branch 'develop'
-            }
+        stage('Deploy to KIND') {
             steps {
-                echo 'Deploying to development environment...'
-                script {
-                    // Add your deployment commands here
-                    // Example: kubectl, docker-compose, etc.
-                    if (isUnix()) {
-                        sh '''
-                            docker stop angular-foyer-dev || true
-                            docker rm angular-foyer-dev || true
-                            docker run -d --name angular-foyer-dev -p 8080:80 ${DOCKER_IMAGE}:${DOCKER_TAG}
-                        '''
-                    } else {
-                        bat '''
-                            docker stop angular-foyer-dev || exit 0
-                            docker rm angular-foyer-dev || exit 0
-                            docker run -d --name angular-foyer-dev -p 8080:80 %DOCKER_IMAGE%:%DOCKER_TAG%
-                        '''
-                    }
-                }
-            }
-        }
-
-        stage('Deploy to Production') {
-            when {
-                branch 'main'
-            }
-            steps {
-                echo 'Deploying to production environment...'
-                input message: 'Deploy to production?', ok: 'Deploy'
-                script {
-                    // Add your production deployment commands here
-                    if (isUnix()) {
-                        sh '''
-                            docker stop angular-foyer-prod || true
-                            docker rm angular-foyer-prod || true
-                            docker run -d --name angular-foyer-prod -p 80:80 ${DOCKER_IMAGE}:${DOCKER_TAG}
-                        '''
-                    } else {
-                        bat '''
-                            docker stop angular-foyer-prod || exit 0
-                            docker rm angular-foyer-prod || exit 0
-                            docker run -d --name angular-foyer-prod -p 80:80 %DOCKER_IMAGE%:%DOCKER_TAG%
-                        '''
-                    }
-                }
-            }
-        }
-
-        stage('Clean Up') {
-            steps {
-                echo 'Cleaning up old Docker images...'
-                script {
-                    if (isUnix()) {
-                        sh 'docker image prune -f'
-                    } else {
-                        bat 'docker image prune -f'
-                    }
-                }
+                sh '''
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-foyer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-foyer
+  template:
+    metadata:
+      labels:
+        app: angular-foyer
+    spec:
+      containers:
+      - name: angular-foyer
+        image: angular-foyer:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-foyer
+spec:
+  type: NodePort
+  selector:
+    app: angular-foyer
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+EOF
+                '''
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline completed successfully!'
-            // Add notifications here (email, Slack, etc.)
+            echo "✅ Application deployed successfully to KIND"
         }
         failure {
-            echo 'Pipeline failed!'
-            // Add failure notifications here
-        }
-        always {
-            echo 'Cleaning workspace...'
-            cleanWs()
+            echo "❌ Pipeline failed"
         }
     }
 }
