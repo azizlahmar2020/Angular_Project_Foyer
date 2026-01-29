@@ -46,12 +46,12 @@
 
   <!-- Radio Buttons -->
   <div class="form-check">
-    <input type="radio" id="trueValue" formControlName="estValide" [value]="false" class="form-check-input" [checked]="addRes.controls['estValide']?.value === false" (change)="addRes.controls['estValide']?.setValue(false)">
+    <input type="radio" id="trueValue" formControlName="estValide" [value]="false" class="form-check-input" [checked]="addRes.controls['estValide'].value === false" (change)="addRes.controls['estValide'].setValue(false)">
     <label class="form-check-label" for="trueValue">Non</label>
   </div>
 
   <div class="form-check">
-    <input type="radio" id="falseValue" formControlName="estValide" [value]="true" class="form-check-input" [checked]="addRes.controls['estValide']?.value === true" (change)="addRes.controls['estValide']?.setValue(true)">
+    <input type="radio" id="falseValue" formControlName="estValide" [value]="true" class="form-check-input" [checked]="addRes.controls['estValide'].value === true" (change)="addRes.controls['estValide'].setValue(true)">
     <label class="form-check-label" for="falseValue">Oui</label>
   </div>
 
